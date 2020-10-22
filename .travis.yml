@@ -8,49 +8,42 @@ install:
   - poetry install
 
 stages:
-  - name: "lint"
-    if: branch = main AND (type = pull_request OR type = push)
-  - name: "test"
-    if: branch = main AND (type = pull_request OR type = push)
-  - name: "build"
-    if: branch = main AND type = push
-  - name: "publish"
-    if: branch = main AND type = push
+  - name: "lint and test"
+    if: branch = main AND (ype = push)
+  - name: "build and publish"
+    if: branch = main AND type = push AND tag IS present
 jobs:
   include:
-    - stage: "lint"
-      name: "using python 3.6 "
+    - stage: "lint and test"
+      name: "lint using python 3.6 "
       python: 3.6
       script:
         - make lint
-    - name: "using python 3.7 "
+    - name: "lint using python 3.7 "
       python: 3.7
       script:
         - make lint
-    - name: "using python 3.8 "
+    - name: "lint using python 3.8 "
       python: 3.8
       script:
         - make lint
-    - stage: "test"
-      name: "using python 3.6 "
+    - name: "test using python 3.6 "
       python: 3.6
       script:
         - make test
-    - name: "using python 3.7 "
+    - name: "test using python 3.7 "
       python: 3.7
       script:
         - make test
-    - name: "using python 3.8 "
+    - name: "test using python 3.8 "
       python: 3.8
       script:
         - make test
-    - stage: "build"
+    - stage: "build and publish"
       python:
         - 3.8
       script:
         - poetry build
-    - stage: "publish"
-      script: skip
       deploy:
         provider: pypi
         username: "__token__"
