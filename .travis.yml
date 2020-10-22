@@ -19,17 +19,29 @@ stages:
 jobs:
   include:
     - stage: "lint"
-      python:
-        - 3.6
-        - 3.7
-        - 3.8
+      name: "using python 3.6 "
+      python: 3.6
+      script:
+        - make lint
+    - name: "using python 3.7 "
+      python: 3.7
+      script:
+        - make lint
+    - name: "using python 3.8 "
+      python: 3.8
       script:
         - make lint
     - stage: "test"
-      python:
-        - 3.6
-        - 3.7
-        - 3.8
+      name: "using python 3.6 "
+      python: 3.6
+      script:
+        - make test
+    - name: "using python 3.7 "
+      python: 3.7
+      script:
+        - make test
+    - name: "using python 3.8 "
+      python: 3.8
       script:
         - make test
     - stage: "build"
@@ -42,6 +54,6 @@ jobs:
         provider: pypi
         username: "__token__"
         password:
-          secure: "XtIo3VhakQG8yoCPcAsidncMGow27mmngGMy6PvHghojEO1gXUTvSe4Ub4UCbNUXpi3Xlo0AnI3YOu/FcfZpXxo08C/NtZq4+/xh8HeAWY9oJ2F3nyg0kYE3zApk1v3GKeBrD6lQnPYsfvRJT2M819skZcqZBMpMFBaRoPcJ+1KI52T0LIcG4tBWZCg5hys9isw8NFyyWwiqK1SJcVSJLcDOTSLCDbTKaGom5uT7niBnIdS5GqsjoXLTULPKzSiGK2V21yUqsYFLZoWOwc+u5aDl58lhSTsTOTkZvWXBtKvUPUMgVVjNzCVXNZJvr6c62FzBdfUK4aZzRxazoSs3WeiRgrShIpJO0odfCkbdRLj4FzSXmNw3+2AOLAmqMtnsrGVIEuJiNSwZIR6jcfJJ/V0HPMVPJCAXpPosxo6/MicjJsV4Kg+ARHKhS9dQ6DN1L9aysVW60uD4Mifdo4qPCj4Ihwmv1p48bQaicUOfQNYNPGi8l7tI9KMNgOBR/7Pl+hJQVNQ36G4Fw1Mj5B0vVQWzi8D8KBLCj52pT8HBTGpSO1ia6geQeP0IjSVpbgWkXDuVHnnuM+5w1mUeYyJk/ypy52r8VHBBqLuqtgMS8srkZzNTu6Jfz4IsR43Wig8l6/io2zGCLbPacaFKSH8wlzOtNeybvT2aG3Pvf6aKuE4="
+          secure: "Hun3B7ZYu6XxAc4vo3oQHbtaXHFmD/ULkBkL9dmtSItiGEm7yOECP8xXX6j2O5fYXCr15IrC+QA21+ozHVXKq9ZybVsIISvmEE9Va9RCqgTYEGqzisOZWIUmnRCzBwAbMM33dSHZucLDlvHDNip20g2DRrEm1mGAnLEzB83c2ryTqjF6m843GgjpM5n22fH3RWyBDB+cIoA6RLwul7BnoNdYPIZdWbKXGNZM5WDinpnemC59VfrDnqTHN2ajI6ewL8yhlsnD7T1sDIofCzzhtxaNzSe+hHCJkHGvTOTRH+KVV0TyJ21Gag/q3ZY49VQMpB7o8FVjEA4oQJNm+e3vGtaxtbivtSUGbclMuChaedgybuW+ffIklJxh/jEqyVxt1i67bNAkSFzosk4CtGwcLA8c9fvP1bUKyI6vPhM9yYOxFMn4KPWwwiKB4gndME28n5QbXIcdarrjonHm19NbN57zBzjj7Te6w3HK2rVwajAOk0aYnQ6YfoekiWiDRshZxxltO7EO/zk2tksWy3rs2e4iubzEXgbjLj4OjYxgmLc4MdD3YrWkDCILz97MLeMrEHQjxZfD6Ji75W/DbTl045idj/AhmojjS8fjAa/neyZEigZIKGFDXXqv2yZbZKjjv975GXRxFpdE+cHeRONisidzZOgCFOHs43LUKDguy74="
         on:
           tags: true
