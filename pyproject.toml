@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vidoo"
-version = "0.1.0"
+version = "0.1.1"
 description = "test package publish"
 authors = ["abhijeet"]
 

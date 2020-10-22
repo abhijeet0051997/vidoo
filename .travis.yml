@@ -44,14 +44,5 @@ jobs:
         - 3.8
       script:
         - poetry build
-        - ls
-      deploy:
-        provider: pypi
-        username: "__token__"
-        password:
-          secure: "Hun3B7ZYu6XxAc4vo3oQHbtaXHFmD/ULkBkL9dmtSItiGEm7yOECP8xXX6j2O5fYXCr15IrC+QA21+ozHVXKq9ZybVsIISvmEE9Va9RCqgTYEGqzisOZWIUmnRCzBwAbMM33dSHZucLDlvHDNip20g2DRrEm1mGAnLEzB83c2ryTqjF6m843GgjpM5n22fH3RWyBDB+cIoA6RLwul7BnoNdYPIZdWbKXGNZM5WDinpnemC59VfrDnqTHN2ajI6ewL8yhlsnD7T1sDIofCzzhtxaNzSe+hHCJkHGvTOTRH+KVV0TyJ21Gag/q3ZY49VQMpB7o8FVjEA4oQJNm+e3vGtaxtbivtSUGbclMuChaedgybuW+ffIklJxh/jEqyVxt1i67bNAkSFzosk4CtGwcLA8c9fvP1bUKyI6vPhM9yYOxFMn4KPWwwiKB4gndME28n5QbXIcdarrjonHm19NbN57zBzjj7Te6w3HK2rVwajAOk0aYnQ6YfoekiWiDRshZxxltO7EO/zk2tksWy3rs2e4iubzEXgbjLj4OjYxgmLc4MdD3YrWkDCILz97MLeMrEHQjxZfD6Ji75W/DbTl045idj/AhmojjS8fjAa/neyZEigZIKGFDXXqv2yZbZKjjv975GXRxFpdE+cHeRONisidzZOgCFOHs43LUKDguy74="
-        on:
-          tags: true
-          branch: main
-          distributions: sdist bdist_wheel
+        - twine upload --skip-existing -r testpypi dist/* -u __token__ -p Hun3B7ZYu6XxAc4vo3oQHbtaXHFmD/ULkBkL9dmtSItiGEm7yOECP8xXX6j2O5fYXCr15IrC+QA21+ozHVXKq9ZybVsIISvmEE9Va9RCqgTYEGqzisOZWIUmnRCzBwAbMM33dSHZucLDlvHDNip20g2DRrEm1mGAnLEzB83c2ryTqjF6m843GgjpM5n22fH3RWyBDB+cIoA6RLwul7BnoNdYPIZdWbKXGNZM5WDinpnemC59VfrDnqTHN2ajI6ewL8yhlsnD7T1sDIofCzzhtxaNzSe+hHCJkHGvTOTRH+KVV0TyJ21Gag/q3ZY49VQMpB7o8FVjEA4oQJNm+e3vGtaxtbivtSUGbclMuChaedgybuW+ffIklJxh/jEqyVxt1i67bNAkSFzosk4CtGwcLA8c9fvP1bUKyI6vPhM9yYOxFMn4KPWwwiKB4gndME28n5QbXIcdarrjonHm19NbN57zBzjj7Te6w3HK2rVwajAOk0aYnQ6YfoekiWiDRshZxxltO7EO/zk2tksWy3rs2e4iubzEXgbjLj4OjYxgmLc4MdD3YrWkDCILz97MLeMrEHQjxZfD6Ji75W/DbTl045idj/AhmojjS8fjAa/neyZEigZIKGFDXXqv2yZbZKjjv975GXRxFpdE+cHeRONisidzZOgCFOHs43LUKDguy74=
 
