@@ -8,49 +8,42 @@ install:
   - poetry install
 
 stages:
-  - name: "lint"
-    if: branch = main AND (type = pull_request OR type = push)
-  - name: "test"
-    if: branch = main AND (type = pull_request OR type = push)
-  - name: "build"
-    if: branch = main AND type = push
-  - name: "publish"
-    if: branch = main AND type = push
+  - name: "lint and test"
+    if: branch = main AND (ype = push)
+  - name: "build and publish"
+    if: tag IS present
 jobs:
   include:
-    - stage: "lint"
-      name: "using python 3.6 "
+    - stage: "lint and test"
+      name: "lint using python 3.6 "
       python: 3.6
       script:
         - make lint
-    - name: "using python 3.7 "
+    - name: "lint using python 3.7 "
       python: 3.7
       script:
         - make lint
-    - name: "using python 3.8 "
+    - name: "lint using python 3.8 "
       python: 3.8
       script:
         - make lint
-    - stage: "test"
-      name: "using python 3.6 "
+    - name: "test using python 3.6 "
       python: 3.6
       script:
         - make test
-    - name: "using python 3.7 "
+    - name: "test using python 3.7 "
       python: 3.7
       script:
         - make test
-    - name: "using python 3.8 "
+    - name: "test using python 3.8 "
       python: 3.8
       script:
         - make test
-    - stage: "build"
+    - stage: "build and publish"
       python:
         - 3.8
       script:
         - poetry build
-    - stage: "publish"
-      script: skip
       deploy:
         provider: pypi
         username: "__token__"
@@ -58,3 +51,4 @@ jobs:
           secure: "Hun3B7ZYu6XxAc4vo3oQHbtaXHFmD/ULkBkL9dmtSItiGEm7yOECP8xXX6j2O5fYXCr15IrC+QA21+ozHVXKq9ZybVsIISvmEE9Va9RCqgTYEGqzisOZWIUmnRCzBwAbMM33dSHZucLDlvHDNip20g2DRrEm1mGAnLEzB83c2ryTqjF6m843GgjpM5n22fH3RWyBDB+cIoA6RLwul7BnoNdYPIZdWbKXGNZM5WDinpnemC59VfrDnqTHN2ajI6ewL8yhlsnD7T1sDIofCzzhtxaNzSe+hHCJkHGvTOTRH+KVV0TyJ21Gag/q3ZY49VQMpB7o8FVjEA4oQJNm+e3vGtaxtbivtSUGbclMuChaedgybuW+ffIklJxh/jEqyVxt1i67bNAkSFzosk4CtGwcLA8c9fvP1bUKyI6vPhM9yYOxFMn4KPWwwiKB4gndME28n5QbXIcdarrjonHm19NbN57zBzjj7Te6w3HK2rVwajAOk0aYnQ6YfoekiWiDRshZxxltO7EO/zk2tksWy3rs2e4iubzEXgbjLj4OjYxgmLc4MdD3YrWkDCILz97MLeMrEHQjxZfD6Ji75W/DbTl045idj/AhmojjS8fjAa/neyZEigZIKGFDXXqv2yZbZKjjv975GXRxFpdE+cHeRONisidzZOgCFOHs43LUKDguy74="
         on:
           tags: true
+          branch: main
