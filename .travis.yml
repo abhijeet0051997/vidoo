@@ -9,7 +9,7 @@ install:
 
 stages:
   - name: "lint and test"
-    if: branch = main AND (ype = push)
+    if: branch = main AND (type = push OR type = pull_request)
   - name: "build and publish"
     if: tag IS present
 jobs:
